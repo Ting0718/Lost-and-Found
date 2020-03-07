@@ -40,13 +40,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <Button
-        android:id="@+id/btnSignUp"
+    <TextView
+        android:id="@+id/etNotRegistered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:text="Sign Up"
+        android:layout_marginTop="30dp"
+        android:text="Not registered yet? Sign up here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

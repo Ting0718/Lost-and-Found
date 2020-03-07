@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private Button btnSignUp;
     private Button btnLogin;
     private EditText etUsername;
     private EditText etPassword;
+    private TextView etNotRegistered;
 
     //firebase instance
 
@@ -21,13 +22,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
-        btnSignUp = findViewById(R.id.btnSignUp);
         btnLogin = findViewById(R.id.btnLogin);
         etUsername = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        etNotRegistered = findViewById(R.id.etNotRegistered);
 
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        etNotRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
