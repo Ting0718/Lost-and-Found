@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "464853220749",
+    "firebase_url": "https://zot-and-found.firebaseio.com",
+    "project_id": "zot-and-found",
+    "storage_bucket": "zot-and-found.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464853220749:android:35e063111226025b8fd1c4",
+        "android_client_info": {
+          "package_name": "com.example.zot_and_found"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464853220749-11optdtfd0e2eegchrafsdjij217bu0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIq4yz-ZvV2lkwwcyIZNxt3nbJz05zJ5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464853220749-11optdtfd0e2eegchrafsdjij217bu0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
