@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,12 +23,18 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static final String TAG = "LogInActivity";
+
     private Button btnLogin;
     private EditText etEmail;
     private EditText etPassword;
     private TextView etNotRegistered;
+    private TextView etMessage;
+
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+
 
     //firebase instance
 
@@ -39,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etNotRegistered = findViewById(R.id.etNotRegistered);
+        etMessage = findViewById(R.id.etMessage);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -54,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -68,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (password.isEmpty() && email.isEmpty())
                 {
-                    Toast.makeText(LoginActivity.this, "Empty username and password", Toast.LENGTH_SHORT).show();
+                    etMessage.setText("Empty username and password");
+                    etMessage.setTextColor(Color.RED);
                 }
 
                 else if (email.isEmpty())
@@ -83,18 +92,21 @@ public class LoginActivity extends AppCompatActivity {
                     etPassword.requestFocus();
                 }
 
-                else if (!email.isEmpty() && !password.isEmpty())
+                else if (!(email.isEmpty() && password.isEmpty()))
                 {
                     mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful())
                             {
-                                Toast.makeText(LoginActivity.this, "Login Error, please try again later", Toast.LENGTH_SHORT).show();
+                                // the password has to be least 6 characters
+                                Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
+                                etMessage.setText( task.getException().getMessage());
+                                etMessage.setTextColor(Color.RED);
                             }
                             else
                             {
-                                Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(i);
                             }
@@ -104,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Error occured, please try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Error ocurred, please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
         });

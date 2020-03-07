@@ -1,15 +1,18 @@
 package com.example.zot_and_found;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +24,11 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etNewEmail;
     private EditText etNewPassword;
     private TextView etHasAccount;
+    private TextView etMessage;
+
     FirebaseAuth mFirebaseAuth;
+    public static final String TAG = "SignUpActivity";
+
     //firebase instance
 
     @Override
@@ -32,8 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
         btnNewUserSignUp = findViewById(R.id.btnNewUserSignUp);
         etNewEmail = findViewById(R.id.etNewEmail);
         etNewPassword = findViewById(R.id.etNewPassword);
-
         etHasAccount = findViewById(R.id.etHasAccount);
+        etMessage = findViewById(R.id.etMessage);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -46,7 +53,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (password.isEmpty() && email.isEmpty())
                 {
-                    Toast.makeText(SignUpActivity.this, "Empty username and password", Toast.LENGTH_SHORT).show();
+                    etMessage.setText("Empty username and password");
+                    etMessage.setTextColor(Color.RED);
                 }
 
                 else if (email.isEmpty())
@@ -61,18 +69,28 @@ public class SignUpActivity extends AppCompatActivity {
                     etNewPassword.requestFocus();
                 }
 
-                else if (!email.isEmpty() && !password.isEmpty())
+                else if (password.length() < 6)
+                {
+                    etNewPassword.setError("the password has to be least 6 characters");
+                    etNewPassword.requestFocus();
+                }
+
+                else if (!(email.isEmpty() && password.isEmpty()))
                 {
                     mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful())
                             {
-                                Toast.makeText(SignUpActivity.this, "Sign up is not unsucessful", Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
+                                etMessage.setText( task.getException().getMessage());
+                                etMessage.setTextColor(Color.RED);
                             }
                             else
                             {
-                                Toast.makeText(SignUpActivity.this, "Sign up successfully", Toast.LENGTH_SHORT).show();
+                                etMessage.setText("Sign up successfully");
+                                etMessage.setTextColor(Color.GREEN);
                                 Intent i = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(i);
                             }
@@ -80,25 +98,9 @@ public class SignUpActivity extends AppCompatActivity {
                     });
                 }
 
-                else
-                {
-                    Toast.makeText(SignUpActivity.this, "Error occured, please try again later", Toast.LENGTH_SHORT).show();
+                else {
+                    etMessage.setText("Error occurred, please try again later");
                 }
-
-
-
-
-                /*
-                if (
-                    //add new user to database
-                    Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(i);
-                }
-                else{
-                    Toast.makeText(SignUpActivity.this, "Cannot have an empty username/password", Toast.LENGTH_SHORT).show();
-                }
-
-                 */
             }
         });
 
