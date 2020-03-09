@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.zot_and_found.Fragments.ComposeFragment;
 import com.example.zot_and_found.Fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, "You clicked on home");
                         break;
                     case R.id.action_compose:
-                        fragment = new HomeFragment();
+                        fragment = new ComposeFragment();
                         Log.i(TAG, "You clicked on compose");
                         break;
                     case R.id.action_focus:
