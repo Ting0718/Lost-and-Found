@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.example.zot_and_found.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
 import java.util.List;
@@ -43,6 +44,9 @@ public class ComposeFragment extends Fragment {
     private EditText etQuestion;
 
     private Button btnSubmit;
+
+    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
@@ -70,6 +74,7 @@ public class ComposeFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         etName = view.findViewById(R.id.etName);
         etQuestion = view.findViewById(R.id.etQuestion);
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,13 +111,15 @@ public class ComposeFragment extends Fragment {
     {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         // Create a File reference to access to future access
         photoFile = getPhotoFileUri(photoFileName);
 
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepathgroupsmal.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
