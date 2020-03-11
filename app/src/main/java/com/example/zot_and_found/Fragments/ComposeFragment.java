@@ -23,11 +23,24 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 
+import com.example.zot_and_found.Post;
 import com.example.zot_and_found.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.firestore.v1.WriteResult;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,12 +58,16 @@ public class ComposeFragment extends Fragment {
 
     private Button btnSubmit;
 
-    FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private StorageReference storageRef = storage.getReferenceFromUrl("gs://zot-and-found.appspot.com");
+
+    private StorageReference imageRef = storageRef.child("images/tester.jpg");
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     private File photoFile;
+    private Bitmap targetImageBM;
 
 
     public ComposeFragment() {
@@ -74,7 +91,6 @@ public class ComposeFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         etName = view.findViewById(R.id.etName);
         etQuestion = view.findViewById(R.id.etQuestion);
-        mFirebaseAuth = FirebaseAuth.getInstance();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +104,7 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "better take a photo first", Toast.LENGTH_SHORT);
                     return;
                 }
-                savePost(description, photoFile);
+                savePost(description, question, name);
             }
         });
 
@@ -102,9 +118,35 @@ public class ComposeFragment extends Fragment {
 
 
 
-    private void savePost(String description, File photoFile) // user
+    private void savePost(String description, String question, String name) // user
     {
-        //TODO: upload post to firebase
+        //I have no idea how to save image to cloud firestore
+        //Right now my solution is uploading the image to storage and then save the reference to my posts
+
+        //uploads the image and save the name.
+        String imageName = uploadImage(targetImageBM);
+
+        //I was gonna use map, but apprently firebase can convert objects directly
+        //Map<String, Object> docData = new HashMap<>();
+        Post newPost = new Post(description, question, name, storageRef.child("images/" + imageName + ".jpg"));
+
+        //I read up on the firebase documents, but everything keeps referencing a "db", I'm assuming it's an instance of firestore
+        firestore.collection("posts")
+                .add(newPost)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+        //TODO: finish savePost
+
     }
 
     private void launchCamera()
@@ -153,13 +195,41 @@ public class ComposeFragment extends Fragment {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                targetImageBM = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview\
-                ivPostImage.setImageBitmap(takenImage);
+                ivPostImage.setImageBitmap(targetImageBM);
+
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+    private String uploadImage(Bitmap image)
+    {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] bytes = baos.toByteArray();
+        String randomName = UUID.randomUUID().toString();
+
+        //Generate random UUID for the image
+        imageRef = storageRef.child("images/" + randomName + ".jpg");
+
+        UploadTask uploadTask = imageRef.putBytes(bytes);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.i(TAG, "successfulUpload");
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+            }
+        });
+        return randomName;
+    }
+
 }
