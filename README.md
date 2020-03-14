@@ -8,14 +8,12 @@
 5. [Schema](#Schema)
 
 ## Inspiration
-At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralize the service of Lost and Found for UCI fellows.
+At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralize the service of Lost and Found for UCI students
 
 ## Overview
 ### Description
 This is an app that helps UCI students look for the items they lost or got stolen around the campus. Students who find the 
-
-Tracks what music an individual listens to, and pairs them with others based on that music. Could be potentially used as a dating app, or just meeting new friends with similar music tastes.
-
+lost items can make a post and look for the 
 ### App Evaluation
 - **Category:**  Lifestlye, Lifehack
 - **Mobile:** This app is 
