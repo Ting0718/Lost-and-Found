@@ -1,11 +1,10 @@
 # Zot-and-Found
 
 ## Table of Contents
-1
-2. [Overview](#Overview)
-3. [Product Spec](#Product-Spec)
-4. [Wireframes](#Wireframes)
-5. [Schema](#Schema)
+1. [Inspiration](#Inspiration)
+1. [Overview](#Overview)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
 
 ## Inspiration
 At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralizes the service of Lost and Found for UCI students
@@ -40,57 +39,11 @@ This is an app that helps UCI students look for the items they lost or got stole
 
 ### 2. Screen Archetypes
 
-* Login 
+* Login: Users have to log in by entering the email and password, 
 * Register - User signs up or logs into their account
-   * Upon Download/Reopening of the application, the user is prompted to log in to gain access to their profile information to be properly matched with another person. 
-   * ...
-* Messaging Screen - Chat for users to communicate (direct 1-on-1)
-   * Upon selecting music choice users matched and message screen opens
-* Profile Screen 
-   * Allows user to upload a photo and fill in information that is interesting to them and others
-* Song Selection Screen.
-   * Allows user to be able to choose their desired song, artist, genre of preference and begin listening and interacting with others.
-* Settings Screen
-   * Lets people change language, and app notification settings.
-
-### 3. Navigation
-
-**Tab Navigation** (Tab to Screen)
-
-* Music selection
-* Profile
-* Settings
-
-Optional:
-* Music/Encounter Queue
-* Discover (Top Choices)
-
-**Flow Navigation** (Screen to Screen)
-* Forced Log-in -> Account creation if no log in is available
-* Music Selection (Or Queue if Optional) -> Jumps to Chat
-* Profile -> Text field to be modified. 
-* Settings -> Toggle settings
-
-## Wireframes
-<img src="https://i.imgur.com/9CrjH1K.jpg" width=800><br>
-
-### [BONUS] Digital Wireframes & Mockups
-<img src="https://i.imgur.com/lYHn37F.jpg" height=200>
-
-### [BONUS] Interactive Prototype
-<img src="https://i.imgur.com/AiKfE5g.gif" width=200>
-
-## Schema 
-### Models
-#### Post
-
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the user post (default field) |
-   | author        | Pointer to User| image author |
-   | image         | File     | image that user posts |
-   | caption       | String   | image caption by author |
-   | commentsCount | Number   | number of comments that has been posted to an image |
-   | likesCount    | Number   | number of likes for the post |
-   | createdAt     | DateTime | date when post is created (default field) |
-   | updatedAt     | DateTime | date when post is last updated (default field) |
+  * If they do not have an account, they can create one, and that adds their account information (encrypted) to Authentication   Firebase.
+* Home tab: 
+  * Users can see all the posts on home feed 
+  * Users can view the post details and have an option to answer the verification answers
+* Focused tab: 
+  * Chat Activity - Chat for users to communicate after the verificaiton questions get approved, User can talk to each other    or exchange contact information
