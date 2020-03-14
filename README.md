@@ -12,35 +12,31 @@ At UCI, lost items would be turned into UCIPID's Lost and Found Service. However
 
 ## Overview
 ### Description
-This is an app that helps UCI students look for the items they lost or got stolen around the campus. Students who find the 
-lost items can make a post and look for the 
+This is an app that helps UCI students look for the items they lost or got stolen around the campus. 
 
 ### App Evaluation
 - **Category:**  Lifestlye, Lifehack
 - **Mobile:** This app is designed for mobile app because the portability is important, and users can find what items are at a specific location. 
-- **Story:** People can make a post after they users can see all the posts on the feed 
-- **Market:** 
-- **Habit:** This app could be used as often or unoften as the user wanted depending on how deep their social life is, and what exactly they're looking for.
-- **Scope:** First we would start with pairing people based on music taste, then perhaps this could evolve into a music sharing application as well to broaden its usage. Large potential for use with spotify, apple music, or other music streaming applications.
+- **Story:** People can make a post after they find a lost item and make a post and post a question for validation. The users can see all the posts on the feed, and the users who are looking for their items should look for their food
+- **Audience:** the app is specifically targeted to UCI students.
 
 ## Product Spec
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
 
-* User logs in to access previous chats and preference settings
-* User picks what their favorite artist/genre/etc. (Think Spotify interface)
-* Matches have a chat window to get to know each other, with the ability to skip music and unmatch (Tinder Style).
-* Profile pages for each user
-* Settings (Accesibility, Notification, General, etc.)
+* User can view other people's post in the home page (feed)
+* Verification Questions: user can set up questions for verification
+* add tags to post abut the items #hashtag: easier for search
+* Users can exchange contact information to for future communication
 
 **Optional Nice-to-have Stories**
 
-* Log of past songs/people with album art covers matching
-* Page of most played songs (i.e. songs that most users are connecting through)
-* Profile Add-On: Top music choices, etc.
-* Optional Shuffle Button (i.e. random encounter/random song)
-* Listening/Encounter Queue
+* Tipping Users can probably tip someone who found their items
+* Notification: User can "tell" the app they lost something, the app notifies the user if someone found an item that matches the description
+* A search box where users can search for a specific item (might need reg-ex)
+* Items are categorized 
+* Chat Room: in app chat so two parties can discuss authenticity/meet up 
 
 ### 2. Screen Archetypes
 
@@ -98,52 +94,3 @@ Optional:
    | likesCount    | Number   | number of likes for the post |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
-### Networking
-#### List of network requests by screen
-   - Home Feed Screen
-      - (Read/GET) Query all posts where user is author
-         ```swift
-         let query = PFQuery(className:"Post")
-         query.whereKey("author", equalTo: currentUser)
-         query.order(byDescending: "createdAt")
-         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let error = error { 
-               print(error.localizedDescription)
-            } else if let posts = posts {
-               print("Successfully retrieved \(posts.count) posts.")
-           // TODO: Do something with posts...
-            }
-         }
-         ```
-      - (Create/POST) Create a new like on a post
-      - (Delete) Delete existing like
-      - (Create/POST) Create a new comment on a post
-      - (Delete) Delete existing comment
-   - Create Post Screen
-      - (Create/POST) Create a new post object
-   - Profile Screen
-      - (Read/GET) Query logged in user object
-      - (Update/PUT) Update user profile image
-#### [OPTIONAL:] Existing API Endpoints
-##### An API Of Ice And Fire
-- Base URL - [http://www.anapioficeandfire.com/api](http://www.anapioficeandfire.com/api)
-
-   HTTP Verb | Endpoint | Description
-   ----------|----------|------------
-    `GET`    | /characters | get all characters
-    `GET`    | /characters/?name=name | return specific character by name
-    `GET`    | /houses   | get all houses
-    `GET`    | /houses/?name=name | return specific house by name
-
-##### Game of Thrones API
-- Base URL - [https://api.got.show/api](https://api.got.show/api)
-
-   HTTP Verb | Endpoint | Description
-   ----------|----------|------------
-    `GET`    | /cities | gets all cities
-    `GET`    | /cities/byId/:id | gets specific city by :id
-    `GET`    | /continents | gets all continents
-    `GET`    | /continents/byId/:id | gets specific continent by :id
-    `GET`    | /regions | gets all regions
-    `GET`    | /regions/byId/:id | gets specific region by :id
-    `GET`    | /characters/paths/:name | gets a character's path with a given name
