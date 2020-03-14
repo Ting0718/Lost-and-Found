@@ -1,18 +1,24 @@
 # Zot-and-Found
 
 ## Table of Contents
-1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-1. [Schema](#Schema)
+1
+2. [Overview](#Overview)
+3. [Product Spec](#Product-Spec)
+4. [Wireframes](#Wireframes)
+5. [Schema](#Schema)
+
+## Inspiration
+At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralize the service of Lost and Found for UCI fellows.
 
 ## Overview
 ### Description
+This is an app that helps UCI students look for the items they lost or got stolen around the campus. Students who find the 
+
 Tracks what music an individual listens to, and pairs them with others based on that music. Could be potentially used as a dating app, or just meeting new friends with similar music tastes.
 
 ### App Evaluation
-- **Category:** Social Networking / Music
-- **Mobile:** This app would be primarily developed for mobile but would perhaps be just as viable on a computer, such as tinder or other similar apps. Functionality wouldn't be limited to mobile devices, however mobile version could potentially have more features.
+- **Category:**  Lifestlye, Lifehack
+- **Mobile:** This app is 
 - **Story:** Analyzes users music choices, and connects them to other users with similar choices. The user can then decide to message this person and befriend them if wanted.
 - **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would be organized into age groups.
 - **Habit:** This app could be used as often or unoften as the user wanted depending on how deep their social life is, and what exactly they're looking for.
