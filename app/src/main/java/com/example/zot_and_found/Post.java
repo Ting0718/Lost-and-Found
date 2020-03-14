@@ -14,18 +14,18 @@ public class Post {
     String description;
     String question;
     String name;
-    StorageReference reference;
+    String imagePath;
 
     //Keep, needed for firebase
     public Post(){
     }
 
-    public Post(String description, String question, String name, StorageReference reference)
+    public Post(String description, String question, String name, String imagePath)
     {
         this.description = description;
         this.question = question;
         this.name = name;
-        this.reference = reference;
+        this.imagePath = imagePath;
     }
 
     public String getDescription() {
@@ -40,7 +40,7 @@ public class Post {
         return name;
     }
 
-    public StorageReference getReference() {
-        return reference;
+    public String getReference() {
+        return imagePath;
     }
 }

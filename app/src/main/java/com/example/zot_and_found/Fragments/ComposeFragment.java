@@ -122,13 +122,14 @@ public class ComposeFragment extends Fragment {
     {
         //I have no idea how to save image to cloud firestore
         //Right now my solution is uploading the image to storage and then save the reference to my posts
+        //Update to how I'm saving the reference, I'm just saving the path as a String
 
         //uploads the image and save the name.
         String imageName = uploadImage(targetImageBM);
 
         //I was gonna use map, but apprently firebase can convert objects directly
         //Map<String, Object> docData = new HashMap<>();
-        Post newPost = new Post(description, question, name, storageRef.child("images/" + imageName + ".jpg"));
+        Post newPost = new Post(description, question, name, imageRef.getPath());
 
         //I read up on the firebase documents, but everything keeps referencing a "db", I'm assuming it's an instance of firestore
         firestore.collection("posts")
@@ -214,6 +215,7 @@ public class ComposeFragment extends Fragment {
 
         //Generate random UUID for the image
         imageRef = storageRef.child("images/" + randomName + ".jpg");
+        Log.i(TAG, "path of imageRef is " + imageRef.getPath());
 
         UploadTask uploadTask = imageRef.putBytes(bytes);
         uploadTask.addOnFailureListener(new OnFailureListener() {
