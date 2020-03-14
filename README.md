@@ -8,17 +8,18 @@
 5. [Schema](#Schema)
 
 ## Inspiration
-At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralize the service of Lost and Found for UCI students
+At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralizes the service of Lost and Found for UCI students
 
 ## Overview
 ### Description
 This is an app that helps UCI students look for the items they lost or got stolen around the campus. Students who find the 
 lost items can make a post and look for the 
+
 ### App Evaluation
 - **Category:**  Lifestlye, Lifehack
-- **Mobile:** This app is 
-- **Story:** Analyzes users music choices, and connects them to other users with similar choices. The user can then decide to message this person and befriend them if wanted.
-- **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would be organized into age groups.
+- **Mobile:** This app is designed for mobile app because the portability is important, and users can find what items are at a specific location. 
+- **Story:** People can make a post after they users can see all the posts on the feed 
+- **Market:** 
 - **Habit:** This app could be used as often or unoften as the user wanted depending on how deep their social life is, and what exactly they're looking for.
 - **Scope:** First we would start with pairing people based on music taste, then perhaps this could evolve into a music sharing application as well to broaden its usage. Large potential for use with spotify, apple music, or other music streaming applications.
 
