@@ -1,7 +1,9 @@
 package com.example.zot_and_found;
 
 import android.content.Context;
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +13,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
+    public static final String TAG = "PostListAdapter";
+
     private Context context;
     private List<Post> posts;
+
+
 
     public PostListAdapter(Context context, List<Post> posts){
         this.context = context;
@@ -27,9 +38,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        //TODO: change fragment_compose to post_list
-
-        View v = LayoutInflater.from(context).inflate(R.layout.fragment_compose,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_post,parent,false);
         return new ViewHolder(v);
     }
 
@@ -37,7 +46,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.bind(post);
-
+        Log.i(TAG, "currently binding post at position " + position);
     }
 
     @Override
@@ -46,22 +55,23 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvUser;
+        private TextView tvPostName;
         private TextView tvDesc;
         private TextView tvQuestion;
         private ImageView ivPicture;
         public ViewHolder(@NonNull View view){
             super(view);
-            tvUser = view.findViewById(R.id.tvUser);
+            tvPostName = view.findViewById(R.id.tvName);
             tvDesc = view.findViewById(R.id.tvDesc);
-            tvQuestion = view.findViewById(R.id.tvQuestion);
             ivPicture = view.findViewById(R.id.ivPicture);
 
         }
 
         public void bind(Post post) {
-            //TODO: retrieve post data from firebase
+            tvPostName.setText(post.getName());
+            tvDesc.setText(post.getDescription());
 
+            ivPicture.setImageBitmap(post.getBitMap());
         }
     }
 }

@@ -146,8 +146,7 @@ public class ComposeFragment extends Fragment {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
-        //TODO: finish savePost
-
+        Toast.makeText(this.getContext(), "Successful Upload", Toast.LENGTH_SHORT);
     }
 
     private void launchCamera()

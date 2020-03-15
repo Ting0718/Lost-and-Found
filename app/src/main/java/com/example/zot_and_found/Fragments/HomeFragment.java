@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,11 @@ import android.view.ViewGroup;
 import com.example.zot_and_found.Post;
 import com.example.zot_and_found.PostListAdapter;
 import com.example.zot_and_found.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +31,13 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+    public static final String TAG = "HomeFragment";
     private RecyclerView rvHome;
     private PostListAdapter adapter;
-    private List<Post> list_of_posts;
+    private List<Post> postList;
+
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -44,8 +54,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        list_of_posts = new ArrayList<>();
-        adapter = new PostListAdapter(getContext(), list_of_posts);
+        postList = new ArrayList<Post>();
+        adapter = new PostListAdapter(getContext(), postList);
 
         rvHome = view.findViewById(R.id.rvHome);
         //setting adapter on recycler view
@@ -57,7 +67,20 @@ public class HomeFragment extends Fragment {
     }
 
     private void getPosts() {
-        //TODO: Obtain posts from firebase
+        firestore.collection("posts")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            postList.add(document.toObject(Post.class));
+                            Log.i(TAG, "added new post to list");
+
+                            Log.i(TAG, "length of postlist is " + postList.size());
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
 }
