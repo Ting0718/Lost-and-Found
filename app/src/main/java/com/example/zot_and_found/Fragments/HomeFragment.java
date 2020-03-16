@@ -14,14 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.zot_and_found.Post;
+import com.example.zot_and_found.Models.Post;
 import com.example.zot_and_found.PostListAdapter;
 import com.example.zot_and_found.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        postList = new ArrayList<Post>();
+        postList = new ArrayList<>();
         adapter = new PostListAdapter(getContext(), postList);
 
         rvHome = view.findViewById(R.id.rvHome);

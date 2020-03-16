@@ -35,6 +35,18 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
     implementation 'com.google.firebase:firebase-storage:19.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'com.firebaseui:firebase-ui-storage:4.3.2'
+
+    // TODO remove temporary fix for Glide compiler issue
+// Temporary fix begin
+    implementation 'com.android.support:support-annotations:27.1.1'
+    annotationProcessor 'com.android.support:support-annotations:27.1.1'
+// Temporary fix end
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,4 +1,4 @@
-package com.example.zot_and_found;
+package com.example.zot_and_found.Models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +26,7 @@ public class Post {
 
     //Keep, needed for firebase
     public Post(){
+
     }
 
     public Post(String description, String question, String name, String imagePath)
@@ -77,7 +78,9 @@ public class Post {
                 return;
             }
         });
+        Log.i(TAG, "the string of imageBM is " + imageBM[0].toString());
         return imageBM[0];
     }
+
 
 }

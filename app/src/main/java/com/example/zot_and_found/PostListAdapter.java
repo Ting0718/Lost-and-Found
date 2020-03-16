@@ -1,8 +1,6 @@
 package com.example.zot_and_found;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+import com.example.zot_and_found.Models.Post;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+
+import java.io.InputStream;
 import java.util.List;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
@@ -26,6 +30,10 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
     private Context context;
     private List<Post> posts;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://zot-and-found.appspot.com");
+
 
 
 
@@ -68,10 +76,13 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         }
 
         public void bind(Post post) {
+            StorageReference imageReference = storageRef.child(post.getReference());
+
             tvPostName.setText(post.getName());
             tvDesc.setText(post.getDescription());
-
-            ivPicture.setImageBitmap(post.getBitMap());
+            GlideApp.with(context).load(imageReference).into(ivPicture);
         }
     }
+
 }
+
