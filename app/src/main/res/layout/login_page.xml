@@ -26,6 +26,7 @@
         android:ems="10"
         android:hint="Enter username"
         android:inputType="textWebEmailAddress|textPersonName"
+        android:background="@drawable/background_round_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
