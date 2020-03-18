@@ -24,17 +24,21 @@ This is an app that helps UCI students look for the items they lost or got stole
 
 **Required Must-have Stories**
 
-* User can view other people's post in the home page (feed)
-* Verification Questions: user can set up questions for verification
-* add tags to post abut the items #hashtag: easier for search
+* Users can view other people's post in the home page in *Home* Tab
+* Users can compose a post in *Compose* Tab
+  * A post consists of:
+    1.
+* Users can see all the posts they composed in *My Post* Tab
+* Users will see all the posts in *Interested* Tab
+
 * Users can exchange contact information to for future communication
 
 **Optional Nice-to-have Stories**
 
-* Tipping Users can probably tip someone who found their items
+* add tags to post abut the items #hashtag: easier for search
+* Tipping Users canprobably tip someone who found their items
 * Notification: User can "tell" the app they lost something, the app notifies the user if someone found an item that matches the description
-* A search box where users can search for a specific item (might need reg-ex)
-* Items are categorized 
+* A search box where users can search for a specific item
 * Chat Room: in app chat so two parties can discuss authenticity/meet up 
 
 ### 2. Screen Archetypes
