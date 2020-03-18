@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         String emailName = mFirebaseUser.getEmail();
 
-        tvEmail.setText("Hello " + emailName);
+        tvEmail.setText(emailName);
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override

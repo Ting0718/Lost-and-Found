@@ -12,6 +12,10 @@
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/btn_background"
         android:text="Logout"
         android:textColor="@android:color/white" />
@@ -19,10 +23,10 @@
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="481dp"
         android:layout_above="@id/bottomNavigation"
         android:layout_below="@+id/btnLogOut"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="18dp">
 
     </FrameLayout>
 
@@ -39,14 +43,24 @@
 
     <TextView
         android:id="@+id/tvEmail"
-        android:layout_width="179dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="14dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="72dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-14dp"
         android:layout_marginTop="6dp"
-        android:layout_marginEnd="118dp"
-        android:text="name"
-        android:textColor="#121111" />
+        app:srcCompat="@drawable/anteater" />
 
 </RelativeLayout>

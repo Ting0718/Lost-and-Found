@@ -10,7 +10,6 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="Password"
         android:textColor="#050505"
         android:textStyle="bold"
@@ -61,9 +60,12 @@
         android:id="@+id/etHasAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Has an Account? Sign in here"
+        android:layout_marginTop="32dp"
+        android:text="Sign in here"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNewUserSignUp" />
 
@@ -101,4 +103,16 @@
         app:layout_constraintStart_toStartOf="@+id/etNewEmail"
         app:layout_constraintTop_toBottomOf="@+id/etMessage"
         app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:text="Has an Account? "
+        android:textColor="#050505"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/etHasAccount"
+        app:layout_constraintTop_toBottomOf="@+id/btnNewUserSignUp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
