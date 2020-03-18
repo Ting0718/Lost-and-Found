@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.zot_and_found.Fragments.ComposeFragment;
-import com.example.zot_and_found.Fragments.FocusedFragment;
 import com.example.zot_and_found.Fragments.HomeFragment;
+import com.example.zot_and_found.Fragments.MyPostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -75,9 +75,14 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         Log.i(TAG, "You clicked on compose");
                         break;
+
                     case R.id.action_focus:
+                        fragment = new MyPostsFragment();
+                        Log.i(TAG, "You clicked on MyPost");
+                        break;
+
                     default:
-                        fragment = new FocusedFragment();
+                        fragment = new MyPostsFragment();
                         Log.i(TAG, "You clicked on focus");
                         break;
                 }
