@@ -15,10 +15,10 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
-        android:layout_marginEnd="53dp"
+        android:layout_marginEnd="128dp"
         android:text="Here are All the Replies"
-        android:textColor="#151515"
-        android:textSize="30sp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReplies"

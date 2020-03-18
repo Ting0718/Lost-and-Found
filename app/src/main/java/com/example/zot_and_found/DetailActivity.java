@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.zot_and_found.Models.Post;
@@ -50,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
 
         post = Parcels.unwrap(getIntent().getParcelableExtra("post"));
-        tvName.setText(post.getName());
+        tvName.setText("Lost Item Name\n" + post.getName());
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl("gs://zot-and-found.appspot.com");
@@ -58,8 +59,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Glide.with(this).load(imageReference).into(ivImage);
 
-        tvDescription.setText(post.getDescription());
-        tvQuestion.setText(post.getQuestion());
+        tvDescription.setText("Description\n" + post.getDescription());
+        tvQuestion.setText("Question\n" + post.getQuestion());
 
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         final String emailName = mFirebaseUser.getEmail();
@@ -72,6 +73,8 @@ public class DetailActivity extends AppCompatActivity {
                 Replier replier = new Replier(emailName,etAnswer.getText().toString());
                 firestore.collection(postName).add(replier);
                 firestore.collection(emailName+"_replies").add(post);
+                etAnswer.setText("");
+                Toast.makeText(DetailActivity.this, "Successfully upload the reply", Toast.LENGTH_SHORT).show();
             }
         });
     }

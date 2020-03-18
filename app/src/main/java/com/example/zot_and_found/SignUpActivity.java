@@ -90,7 +90,8 @@ public class SignUpActivity extends AppCompatActivity {
                             if (!task.isSuccessful())
                             {
                                 Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
-                                etNewPassword.setError( task.getException().getMessage());
+                                etMessage.setText( task.getException().getMessage());
+                                etMessage.setTextColor(Color.RED);
 
                             }
                             else
