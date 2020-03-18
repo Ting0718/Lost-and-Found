@@ -58,4 +58,4 @@ This is an app that helps UCI students look for the items they lost or got stole
   <img src='https://github.com/Ting0718/Zot-and-Found/blob/master/archetype.PNG' />
   
 ###  Gif Walkthrough
- <img src='https://github.com/Ting0718/ZotReddit/blob/simple/walkthrough.gif' />
+ <img src='https://github.com/Ting0718/Zot-and-Found/blob/master/walkthrough.gif' />
