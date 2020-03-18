@@ -37,4 +37,16 @@
         app:itemTextColor="@android:color/black"
         app:menu="@menu/menu_bottom_navigation" />
 
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="179dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="118dp"
+        android:text="name"
+        android:textColor="#121111" />
+
 </RelativeLayout>

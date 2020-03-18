@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private Button btnNewUserSignUp;
@@ -27,7 +30,9 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView etMessage;
 
     FirebaseAuth mFirebaseAuth;
+    FirebaseUser mFirebaseUser;
     public static final String TAG = "SignUpActivity";
+    DatabaseReference databaseReference;
 
     //firebase instance
 
@@ -42,14 +47,15 @@ public class SignUpActivity extends AppCompatActivity {
         etHasAccount = findViewById(R.id.etHasAccount);
         etMessage = findViewById(R.id.etMessage);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("user");
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         btnNewUserSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = etNewEmail.getText().toString();
                 String password = etNewPassword.getText().toString();
-
 
                 if (password.isEmpty() && email.isEmpty())
                 {
@@ -84,13 +90,11 @@ public class SignUpActivity extends AppCompatActivity {
                             if (!task.isSuccessful())
                             {
                                 Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
-                                etMessage.setText( task.getException().getMessage());
-                                etMessage.setTextColor(Color.RED);
+                                etNewPassword.setError( task.getException().getMessage());
+
                             }
                             else
                             {
-                                etMessage.setText("Sign up successfully");
-                                etMessage.setTextColor(Color.GREEN);
                                 Intent i = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(i);
                             }

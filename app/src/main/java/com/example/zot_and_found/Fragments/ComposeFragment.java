@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,17 +25,26 @@ import androidx.fragment.app.Fragment;
 
 
 import com.example.zot_and_found.Models.Post;
+import com.example.zot_and_found.Models.User;
 import com.example.zot_and_found.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -44,6 +54,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class ComposeFragment extends Fragment {
 
+
     private final String TAG = "ComposeFragment";
     private EditText etDescription;
     private Button btnCatptureImage;
@@ -51,8 +62,11 @@ public class ComposeFragment extends Fragment {
     private EditText etName;
     private EditText etQuestion;
 
+    private String key;
+
     private Button btnSubmit;
 
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private StorageReference storageRef = storage.getReferenceFromUrl("gs://zot-and-found.appspot.com");
@@ -63,6 +77,8 @@ public class ComposeFragment extends Fragment {
     public String photoFileName = "photo.jpg";
     private File photoFile;
     private Bitmap targetImageBM;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
 
 
     public ComposeFragment() {
@@ -99,7 +115,7 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "better take a photo first", Toast.LENGTH_SHORT);
                     return;
                 }
-                savePost(description, question, name);
+                savePost(description, question, name); // also save to my post
             }
         });
 
@@ -132,6 +148,7 @@ public class ComposeFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                     }
                 })
@@ -141,7 +158,38 @@ public class ComposeFragment extends Fragment {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
-        Toast.makeText(this.getContext(), "Successful Upload", Toast.LENGTH_SHORT);
+
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        String emailName = mFirebaseUser.getEmail();
+
+        //ArrayList<Post> posts = new ArrayList<>();
+        //posts.add(newPost);
+        //User user = new User(emailName,posts);
+
+        firestore.collection(emailName)
+                .add(newPost)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+
+        Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
+
+        etDescription.setText("");
+        ivPostImage.setImageResource(android.R.color.transparent);
+        etName.setText("");
+        etQuestion.setText("");
+
+
     }
 
     private void launchCamera()

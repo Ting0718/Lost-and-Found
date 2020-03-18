@@ -11,18 +11,23 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.zot_and_found.Fragments.ComposeFragment;
+import com.example.zot_and_found.Fragments.FocusedFragment;
 import com.example.zot_and_found.Fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MainActivity";
 
+    private TextView tvEmail;
+
     private Button btnLogOut;
-    FirebaseAuth mFirebaseAuth;
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     private BottomNavigationView bottomNavigationView;
@@ -33,9 +38,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvEmail = findViewById(R.id.tvEmail);
 
         btnLogOut = findViewById(R.id.btnLogOut);
 
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        String emailName = mFirebaseUser.getEmail();
+
+        tvEmail.setText("Hello " + emailName);
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_focus:
                     default:
-                        fragment = new HomeFragment();
+                        fragment = new FocusedFragment();
                         Log.i(TAG, "You clicked on focus");
                         break;
                 }

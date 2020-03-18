@@ -1,4 +1,4 @@
-package com.example.zot_and_found;
+package com.example.zot_and_found.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.zot_and_found.DetailActivity;
 import com.example.zot_and_found.Models.Post;
+import com.example.zot_and_found.R;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
