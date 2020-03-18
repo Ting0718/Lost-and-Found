@@ -2,10 +2,10 @@
 
 ## Table of Contents
 1. [Inspiration](#Inspiration)
-1. [Overview](#Overview)
-2. [Product Spec](#Product-Spec)
-3. [Wireframes](#Wireframes)
-3. [Gif Walthrough](#Gif Walkthrough)
+2. [Overview](#Overview)
+3. [Product Spec](#Product-Spec)
+4. [Wireframes](#Wireframes)
+5. [Gif Walthrough](#Gif Walkthrough)
 
 ## Inspiration
 At UCI, lost items would be turned into UCIPID's Lost and Found Service. However, UCIPD only accept certain items. Items such as clothing, water bottles, textbooks...etc are not accepted. Therefore, if students cannot find their items at UCIPID's Lost and Found. The only way is to see if anyone post on Facebook, but here comes another problem. There are more than three pages of Lost and Found on Facebook for UCI students. This kind of inconvenience inspired us to create an app that centralizes the service of Lost and Found for UCI students
@@ -59,6 +59,5 @@ This is an app that helps UCI students look for the items they lost or got stole
   <img src='https://github.com/Ting0718/Zot-and-Found/blob/master/archetype.PNG' />
   
  
- ## Gif Walkthrough
- 
+## Gif Walkthrough
  <img src='https://github.com/Ting0718/ZotReddit/blob/simple/walkthrough.gif' />
