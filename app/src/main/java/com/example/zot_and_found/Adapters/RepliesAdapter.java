@@ -12,42 +12,38 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zot_and_found.AnswersActivity;
-import com.example.zot_and_found.DetailActivity;
-import com.example.zot_and_found.Fragments.MyPostsFragment;
-import com.example.zot_and_found.Models.Post;
+import com.example.zot_and_found.Models.Replier;
 import com.example.zot_and_found.R;
-
-import org.parceler.Parcels;
 
 import java.util.List;
 
-public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder> {
+public class RepliesAdapter extends RecyclerView.Adapter<RepliesAdapter.ViewHolder> {
 
     Context context;
-    List<Post> posts;
+    List<Replier> repliers;
 
-    public MyPostAdapter(Context context, List<Post> posts) {
+    public RepliesAdapter(Context context, List<Replier> repliers) {
         this.context = context;
-        this.posts = posts;
+        this.repliers = repliers;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View postView = LayoutInflater.from(context).inflate(R.layout.message_preview, parent, false);
-        return new ViewHolder(postView);
+        View replyView = LayoutInflater.from(context).inflate(R.layout.message_preview, parent, false);
+        return new ViewHolder(replyView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = posts.get(position);
-        holder.bind(post);
+        Replier replier = repliers.get(position);
+        holder.bind(replier);
 
     }
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        return repliers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,17 +59,9 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
             clContainer = itemView.findViewById(R.id.clContainer);
         }
 
-        public void bind(final Post post) {
-            etName.setText(post.getName());
-            etDescription.setText(post.getDescription());
-            clContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(context, AnswersActivity.class);
-                    i.putExtra("post", Parcels.wrap(post));
-                    context.startActivity(i);
-                }
-            });
+        public void bind(final Replier replier) {
+            etName.setText(replier.getUserEmail());
+            etDescription.setText("The answer or response is " + replier.getReply());
         }
     }
 }

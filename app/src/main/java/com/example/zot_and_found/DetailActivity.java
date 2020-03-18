@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.zot_and_found.Models.Post;
+import com.example.zot_and_found.Models.Replier;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -19,6 +23,8 @@ import org.parceler.Parcels;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String TAG = "DeatailActivity";
+
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     private Post post;
 
@@ -28,6 +34,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvQuestion;
     private EditText etAnswer;
     private Button btnSubmit;
+
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +60,17 @@ public class DetailActivity extends AppCompatActivity {
 
         tvDescription.setText(post.getDescription());
         tvQuestion.setText(post.getQuestion());
+
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        final String emailName = mFirebaseUser.getEmail();
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG,"guess you pushed the button, good for you");
+                String postName = post.getName();
+                Replier replier = new Replier(emailName,etAnswer.getText().toString());
+                firestore.collection(postName).add(replier);
             }
         });
     }

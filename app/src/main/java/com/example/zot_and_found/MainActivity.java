@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.zot_and_found.Fragments.ComposeFragment;
 import com.example.zot_and_found.Fragments.HomeFragment;
+import com.example.zot_and_found.Fragments.InterestedPostsFragment;
 import com.example.zot_and_found.Fragments.MyPostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     default:
-                        fragment = new MyPostsFragment();
+                        fragment = new InterestedPostsFragment();
                         Log.i(TAG, "You clicked on focus");
                         break;
                 }
