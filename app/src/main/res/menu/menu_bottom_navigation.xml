@@ -13,9 +13,9 @@
         android:title="Compose"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_focus"
+        android:id="@+id/action_myPosts"
         android:icon="@drawable/ic_message_black_24dp"
-        android:title="Focused"
+        android:title="My Posts"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_interested_posts"

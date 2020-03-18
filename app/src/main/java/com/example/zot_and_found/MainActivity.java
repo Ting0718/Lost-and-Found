@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, "You clicked on compose");
                         break;
 
-                    case R.id.action_focus:
+                    case R.id.action_myPosts:
                         fragment = new MyPostsFragment();
                         Log.i(TAG, "You clicked on MyPost");
                         break;
