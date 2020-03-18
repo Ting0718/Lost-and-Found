@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#040303"
         android:textSize="18sp" />
 
     <ImageView
@@ -25,21 +26,24 @@
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="81dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="#040303" />
     <View style="@style/Divider"/>
 
     <TextView
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="#040303" />
 
     <EditText
         android:id="@+id/etAnswer"
         android:layout_width="match_parent"
         android:layout_height="143dp"
         android:background="@drawable/background_round_corner"
-        android:hint="Enter your answer here" />
+        android:hint="Enter your answer here"
+        android:textColor="#040303" />
 
     <Button
         android:id="@+id/btnSubmit"
