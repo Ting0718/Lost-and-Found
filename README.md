@@ -54,3 +54,10 @@ This is an app that helps UCI students look for the items they lost or got stole
   * clicking on the post enables them to view a list of replies to the post, can contact the replier by their email
 * Interested tab:
   * Shows all posts that the users reply to, so they know what posts they replied to and what item they lost
+  
+  <img src='https://github.com/Ting0718/Zot-and-Found/blob/master/archetype.PNG' />
+  
+ 
+ ## Video Walkthrough
+ 
+ <img src='https://github.com/Ting0718/ZotReddit/blob/simple/walkthrough.gif' />
