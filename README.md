@@ -26,12 +26,10 @@ This is an app that helps UCI students look for the items they lost or got stole
 
 * Users can view other people's post in the home page in *Home* Tab
 * Users can compose a post in *Compose* Tab
-  * A post consists of:
-    1.
+  * A post consists of: lost item name, a picture, description, and a question
 * Users can see all the posts they composed in *My Post* Tab
 * Users will see all the posts in *Interested* Tab
-
-* Users can exchange contact information to for future communication
+* Users can exchange contact information for future communication
 
 **Optional Nice-to-have Stories**
 
@@ -44,10 +42,15 @@ This is an app that helps UCI students look for the items they lost or got stole
 ### 2. Screen Archetypes
 
 * Login: Users have to log in by entering the email and password, 
-* Register - User signs up or logs into their account
-  * If they do not have an account, they can create one, and that adds their account information (encrypted) to Authentication   Firebase.
+* Register - Users can sign up or log into their accounts
+  * If they do not have an account, they need to create one, and that adds their account information (encrypted) to Authentication Firebase.
 * Home tab: 
   * Users can see all the posts on home feed 
-  * Users can view the post details and have an option to answer the verification answers
-* Focused tab: 
-  * Chat Activity - Chat for users to communicate after the verificaiton questions get approved, User can talk to each other    or exchange contact information
+  * Clicking on the post takes users to a detail activity where they can view the post details and have an option to answer the verification answers
+* Compose tab:
+  * Users can compoe a post and wait for other users to reply
+* My Post tab: 
+  * Shows the post users compose 
+  * clicking on the post enables them to view a list of replies to the post, can contact the replier by their email
+* Interested tab:
+  * Shows all posts that the users reply to, so they know what posts they replied to and what item they lost
