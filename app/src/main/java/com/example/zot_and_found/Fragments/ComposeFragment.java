@@ -106,9 +106,24 @@ public class ComposeFragment extends Fragment {
 
                 if(photoFile == null || ivPostImage.getDrawable() == null)
                 {
-                    Toast.makeText(getContext(), "better take a photo first", Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(), "Please take a photo first", Toast.LENGTH_SHORT);
                     return;
                 }
+
+                if (etName.getText().toString().isEmpty())
+                {
+                    etName.setError("Name field cannot be empty");
+                    etName.requestFocus();
+                    return;
+                }
+
+                if (etDescription.getText().toString().isEmpty())
+                {
+                    etDescription.setError("Description cannot be empty");
+                    etDescription.requestFocus();
+                    return;
+                }
+
                 savePost(description, question, name); // also save to my post
             }
         });

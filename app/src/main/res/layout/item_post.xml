@@ -12,13 +12,12 @@
         style="@style/Divider"/>
 
 
-
     <ImageView
         android:id="@+id/ivPicture"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="282dp"
+        android:layout_height="195dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/lyInfo"
         android:scaleType="centerCrop"
@@ -26,8 +25,8 @@
 
     <LinearLayout
         android:id="@+id/lyInfo"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
+        android:layout_width="120dp"
+        android:layout_height="188dp"
         android:orientation="vertical">
 
         <TextView
