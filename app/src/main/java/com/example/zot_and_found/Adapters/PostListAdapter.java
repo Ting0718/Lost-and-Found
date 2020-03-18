@@ -65,7 +65,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvPostName;
         private TextView tvDesc;
-        private TextView tvQuestion;
         private ImageView ivPicture;
         private RelativeLayout container;
         public ViewHolder(@NonNull View view){

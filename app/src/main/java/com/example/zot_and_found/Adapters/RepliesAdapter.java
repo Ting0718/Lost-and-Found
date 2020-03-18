@@ -61,7 +61,7 @@ public class RepliesAdapter extends RecyclerView.Adapter<RepliesAdapter.ViewHold
 
         public void bind(final Replier replier) {
             etName.setText(replier.getUserEmail());
-            etDescription.setText("The answer or response is " + replier.getReply());
+            etDescription.setText("The answer or response is: \n" + replier.getReply());
         }
     }
 }

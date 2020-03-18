@@ -71,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
                 String postName = post.getName();
                 Replier replier = new Replier(emailName,etAnswer.getText().toString());
                 firestore.collection(postName).add(replier);
+                firestore.collection(emailName+"_replies").add(post);
             }
         });
     }

@@ -25,7 +25,7 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder> {
+public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.ViewHolder> {
 
     Context context;
     List<Post> posts;
@@ -33,7 +33,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://zot-and-found.appspot.com");
 
-    public MyPostAdapter(Context context, List<Post> posts) {
+    public InterestedAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
@@ -62,14 +62,14 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         private TextView tvPostName;
         private TextView tvDesc;
         private ImageView ivPicture;
-        private RelativeLayout container;
+        //private RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPostName = itemView.findViewById(R.id.tvName);
             tvDesc = itemView.findViewById(R.id.tvDesc);
             ivPicture = itemView.findViewById(R.id.ivPicture);
-            container = itemView.findViewById(R.id.container);
+            //container = itemView.findViewById(R.id.container);
         }
 
         public void bind(final Post post) {
@@ -79,14 +79,6 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
             tvDesc.setText(post.getDescription());
             //GlideApp.with(context).load(imageReference).into(ivPicture);
             Glide.with(context).load(imageReference).into(ivPicture);
-            container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(context, AnswersActivity.class);
-                    i.putExtra("post", Parcels.wrap(post));
-                    context.startActivity(i);
-                }
-            });
         }
     }
 }

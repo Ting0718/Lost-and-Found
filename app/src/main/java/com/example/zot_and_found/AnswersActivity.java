@@ -74,7 +74,7 @@ public class AnswersActivity extends AppCompatActivity {
                             repliers.add(document.toObject(Replier.class));
                         Log.i(TAG, "added new replier to list");
 
-                        Log.i(TAG, "length of replier list is: " + repliers.size());
+                        Log.i(TAG, "length of replier list is " + repliers.size());
                         repliesAdapter.notifyDataSetChanged();
                     }
                 });

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zot_and_found.Adapters.MyPostAdapter;
+import com.example.zot_and_found.Adapters.PostListAdapter;
 import com.example.zot_and_found.Models.Post;
 import com.example.zot_and_found.R;
 import com.google.android.gms.tasks.OnSuccessListener;
